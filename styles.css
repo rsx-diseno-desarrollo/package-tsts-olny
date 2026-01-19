@@ -52,16 +52,6 @@ input, select {
   font-size: 1rem;
 }
 
-.spec {
-  background-color: var(--color-gris-claro);
-  font-size: 0.8em;
-  padding: 15px;
-  border-radius: 10px 40px 40px 10px;
-  margin-bottom: 15px;
-  border-left: 10px solid var(--color-naranja);
-  transition: 0.3s;
-}
-
 .spec:hover {
   background-color: var(--color-negro);
   color: var(--color-blanco); 
@@ -227,27 +217,6 @@ a:hover {
 }
 /* Autocomplete END */
 
-/* ===== VIZUALIZADOR DE LISTA DE COTAS DINAMICAS ===== */
-.viewer-comp {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 12px 0;
-  background-color: var(--color-gris-oscuro);
-  border: 1px solid;
-  border-radius: 10px;
-}
-
-.comp-img {
-  max-width: 100%;
-  height: auto;
-  display: none;
-}
-
-.comp-img.is-visible {
-  display: block;
-}
-
 .comp-header {
   font-weight: 600;
   margin-bottom: 6px;
@@ -278,15 +247,6 @@ a:hover {
 .cota-value {
   color: var(--color-gris-oscuro);
 }
-/* SELECTOR DE UNIDAD */
-.unidad-selector {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 6px 0 10px;
-}
-
-/* ===== VIZUALIZADOR DE LISTA DE COTAS DINAMICAS END ===== */
 /* ===== COMPONENETES STYLES END===== */
 
 /* ===== EMPAQUE STYLES ===== */
