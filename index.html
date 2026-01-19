@@ -7,7 +7,7 @@ Proyecto: Sitio de Especificaciones Técnicas
 Nota: Este sitio y su UI fueron desarrollados por Héctor Ulises Montes Hernández.
 -->
   <meta charset="UTF-8">
-  <title>SpecFinder: Empaque</title>
+  <title>SpecFinder BETA</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="img/favicon.ico">
   <!-- PWA Manifest -->
@@ -19,7 +19,7 @@ Nota: Este sitio y su UI fueron desarrollados por Héctor Ulises Montes Hernánd
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js?v=1')
+      navigator.serviceWorker.register('sw.js?v=14')
         .then(reg => console.log('Service Worker registrado'))
         .catch(err => console.log('Error at register Service Worker:', err));
     });
@@ -28,15 +28,42 @@ Nota: Este sitio y su UI fueron desarrollados por Héctor Ulises Montes Hernánd
 <!-- Service Worker END -->
 </head>
 <body>
-  
-<!-- SheetJS -->
-<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-<!-- SheetJS END -->
+<header>
+  <!-- Menu -->
+  <button class="boton-menu"><img src="img/menu-icon.png" alt=""/></button>
+<nav class="menu">
+  <ul>
+    <li><a href="#" data-section="seccion-empaque" data-text="Empaque">Empaque</a></li>
+	<li><a href="#" data-section="seccion-tsts" data-text="TsTs: Plantillas">TsTs: Plantillas</a></li>
+  </ul>
+</nav>
+<!-- Menu END -->
 
-	<h2 data-text="Busqueda de especificaciones">Busqueda de especificaciones</h2><br>  
+
+<!-- Toggle de idioma -->
+<div class="lang-toggle" style="position:fixed; top:12px; right:12px; z-index:999;">
+  <button type="button" id="btn-es">ES</button>
+  <button type="button" id="btn-en">EN</button>
+</div>
+</header>
+  
+<!-- SheetJS y lenguage -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="lang.js"></script>
+<!-- SheetJS y lenguage END -->
+
+  <!-- SECCIONES -->
+  <div class="header">
+    <img src="img/spec-finder-logo.jpg" alt="Logo Spec Finder"/>
+    <h2 data-text="Busqueda de especificaciones">Busqueda de especificaciones</h2><br>
+  </div>
+
+	<div class="seccion activa">
+		<h2>Bienvenido</h2>
+	</div>
 
 <!-- SECCION EMPAQUE -->
-<div id="seccion-empaque" class="seccion activa">
+<div id="seccion-empaque" class="seccion">
   <h3 data-text="Especificaciones de empaque">Especificaciones de empaque</h3>
 
   <!-- Buscador -->
@@ -66,8 +93,29 @@ Nota: Este sitio y su UI fueron desarrollados por Héctor Ulises Montes Hernánd
   </div>
 </div>
 <!-- SECCION EMPAQUE END -->
+
+<!--  SECCIÓN TsTs -->
+<div id="seccion-tsts" class="seccion">
+  <h3 data-text="Plantillas TsTs">Plantillas TsTs</h3><br>
+  <!-- Buscador -->
+  <div class="buscador">
+    <select id="tsts-cliente">
+      <option value="" data-text="-- Seleccionar cliente --">-- Seleccionar cliente --</option>
+    </select>
+	<div class="field with-autocomplete">
+	  <input type="text" id="tsts-parte" placeholder="Número de parte" autocomplete="off" data-placeholder="Número de parte">
+	  <div id="tsts-autocomplete" class="autocomplete-items"></div>
+	</div>
+    <!-- Botón Buscar -->
+    <button id="tsts-btn-buscar" class="btn btn-buscar" type="button" data-text="Buscar">Buscar</button>
+  </div>
+  <!-- Resultados -->
+  <div id="tsts-results">
+  </div>
+</div>
+<!-- SECCIÓN TsTs END -->
   
-  <!-- JS externo -->
+  <!-- Tu archivo JS externo -->
     <script src="script.js"></script>
 </body>
 </html>
