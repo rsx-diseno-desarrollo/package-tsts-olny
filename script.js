@@ -9,11 +9,6 @@ botonMenu.addEventListener('click', () => {
 });
 
 // ============================
-// ESTADO PRODUCTO (para idioma)
-// ============================
-window._productoSpecs = [];
-window._productoFiltered = [];
-// ============================
 // ESTADO EMPAQUE (para idioma)
 // ============================
 window._empaqueData = [];
