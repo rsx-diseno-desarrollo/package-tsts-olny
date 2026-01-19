@@ -38,13 +38,13 @@ body {
 h2 {
   color: var(--color-primary-dark);
   margin-bottom: 10px;
-  font-size: 1.4em;
+  font-size: 1.3em;
 }
 
 h3 {
   color: var(--color-gray-dark);
-  margin-bottom: 6px;
-  font-size: 1.15em;
+  margin-bottom: 5px;
+  font-size: 1em;
 }
 
 img {
@@ -56,9 +56,11 @@ img {
    HEADER / PRESENTACIÓN
    ============================================================ */
 .header img {
-  max-width: 150px;
+  max-width: 150px; 
+  width: 100%;      /* Se adapta al contenedor */
+  height: auto;     /* Mantiene proporcion */
   display: block;
-  margin: 0 auto;
+  margin: 0 auto;   /* Centra la imagen */
   border-radius: 10px;
   padding-top: clamp(10px, 1vh, 30px);
 }
@@ -66,8 +68,7 @@ img {
 /* ============================================================
    INPUTS, SELECTS Y CAMPOS
    ============================================================ */
-input,
-select {
+input, select {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -119,15 +120,17 @@ input::placeholder {
    ============================================================ */
 .boton-menu {
   background-color: var(--color-primary);
-  border: none;
-  border-radius: 10px;
+  color: var(--color-blanco);
   padding: 10px 15px;
+  border: none;
+  border-radius: 10px 40px 40px 10px;
   cursor: pointer;
+  font-size: 18px;
   position: fixed;
-  top: 15px;
+  top: 10px;
   left: 15px;
   z-index: 1100;
-  transition: 0.3s;
+  transition: transform 0.3s ease;
 }
 
 .boton-menu:hover {
@@ -148,6 +151,10 @@ input::placeholder {
   z-index: 1000;
 }
 
+.boton-menu img {
+  height: 24px; /* Ajusta el tamaño del ícono */
+  width: auto;
+}
 .menu.abierto {
   left: 0;
   pointer-events: auto;
@@ -214,7 +221,7 @@ input::placeholder {
 
 .autocomplete-items {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(74%);
   background: var(--color-surface);
   border-radius: 6px;
   max-height: 220px;
