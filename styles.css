@@ -217,11 +217,15 @@ input::placeholder {
    ============================================================ */
 .field.with-autocomplete {
   position: relative;
+   widht: 100%;
 }
 
 .autocomplete-items {
   position: absolute;
-  top: calc(74%);
+  top: calc(74%); 
+  left: 0;
+  right: 0;
+  width: 100%;
   background: var(--color-surface);
   border-radius: 6px;
   max-height: 220px;
