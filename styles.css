@@ -1,333 +1,291 @@
 
-/* estilos.css - Paleta Rassini minimalista y responsivo */
+/* ============================================================
+   PALETA DE COLORES (Optimizada y centrada en #0EC701)
+   ============================================================ */
 :root {
-  --color-naranja: #0EC701;
-  --color-gris-claro: #71C701;
-  --color-gris-oscuro: #054700;
-  --color-blanco: #ffffff;
-  --color-negro: #000000;
-  --color-hector: #0EC701;
+  /* COLOR PRINCIPAL HÉCTOR */
+  --color-primary: #0EC701;
+  --color-primary-dark: #0A9600;
+  --color-primary-light: #4DFF3E;
+
+  /* NEUTROS */
+  --color-bg: #F7F7F7;
+  --color-surface: #FFFFFF;
+  --color-gray-light: #E9E9E9;
+  --color-gray: #3A3A3A;
+  --color-gray-dark: #1C1C1C;
+
+  /* SECUNDARIO (para avisos o elementos destacados) */
+  --color-secondary: #FF9800;
+  --color-secondary-dark: #E67D00;
+
+  /* TEXTO */
+  --color-text: #1C1C1C;
+  --color-text-muted: #555555;
 }
 
+/* ============================================================
+   BASE / TIPOGRAFÍA
+   ============================================================ */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--color-blanco);
-  color: var(--color-negro);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   margin: 0;
   padding: 20px;
 }
 
-.header img {
-  max-width: 150px; 
-  width: 100%;      /* Se adapta al contenedor */
-  height: auto;     /* Mantiene proporcion */
-  display: block;
-  margin: 0 auto;   /* Centra la imagen */
-  border-radius: 10px;
-  padding-top: clamp(10px, 1vh, 30px);
-/* Mínimo , preferido , máximo */
-}
-
-  h2 {
-  color: var(--color-naranja);
+h2 {
+  color: var(--color-primary-dark);
   margin-bottom: 10px;
-  font-size: 1.3em;
+  font-size: 1.4em;
 }
 
 h3 {
-  color: var(--color-gris-oscuro);
-  margin-bottom: 5px;
-  font-size: 1em;
+  color: var(--color-gray-dark);
+  margin-bottom: 6px;
+  font-size: 1.15em;
 }
 
-input, select {
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   HEADER / PRESENTACIÓN
+   ============================================================ */
+.header img {
+  max-width: 150px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding-top: clamp(10px, 1vh, 30px);
+}
+
+/* ============================================================
+   INPUTS, SELECTS Y CAMPOS
+   ============================================================ */
+input,
+select {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
-  border: 1px solid var(--color-gris-oscuro);
-  border-radius: 4px;
-  background-color: var(--color-blanco);
-  color: var(--color-negro);
+  border-radius: 6px;
+  border: 1px solid var(--color-gray-light);
+  background-color: var(--color-surface);
+  color: var(--color-text);
   box-sizing: border-box;
   font-size: 1rem;
 }
 
-.spec:hover {
-  background-color: var(--color-negro);
-  color: var(--color-blanco); 
-  text-decoration: none;
-  
+input::placeholder {
+  color: var(--color-text-muted);
 }
 
-a {
-  color: var(--color-naranja);
-  text-decoration: none;
-  font-weight: bold;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* MENÚ */
-.menu {
-  pointer-events: none; /* Desactiva interacción */
-  position: fixed;
-  top: 0;
-  left: -250px; /* Oculto fuera de la pantalla */
-  width: 250px;
-  height: 100%;
-  background-color: var(--color-gris-oscuro);
-  color: var(--color-blanco);
-  transition: left 0.3s ease-in-out;
-  padding-top: 60px;
-  z-index: 1000;
-}
-
-.menu.abierto {
-  left: 0; /* Se desliza hacia dentro */
-  pointer-events: auto; /* Activa interacción cuando está abierto */
-}
-
-.menu ul {
-  list-style: none;
-  padding: 0;
-  padding-top: 10px;
-  margin: 0;
-}
-
-.menu ul li {
-  border-bottom: 1px solid var(--color-gris-claro);
-  transition: 0.3s;
-}
-
-.menu ul li:hover {
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: 2px solid transparent;
   cursor: pointer;
-  background-color: var(--color-gris-claro);
-  transition: background-color 0.3s ease;
+  transition: 0.2s;
 }
 
-.menu ul li a {
-  display: block;       /* Ocupa todo el espacio del li */
-  width: 100%;          /* Se extiende al ancho completo */
-  padding: 15px;        /* Igual que el li */
+.btn-buscar {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
 }
 
+.btn-buscar:hover {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn-buscar:active {
+  transform: translateY(0px);
+  box-shadow: none;
+}
+
+/* ============================================================
+   MENÚ LATERAL
+   ============================================================ */
 .boton-menu {
-  background-color: var(--color-naranja);
-  color: var(--color-blanco);
-  padding: 10px 15px;
+  background-color: var(--color-primary);
   border: none;
-  border-radius: 10px 40px 40px 10px;
+  border-radius: 10px;
+  padding: 10px 15px;
   cursor: pointer;
-  font-size: 18px;
   position: fixed;
   top: 15px;
   left: 15px;
   z-index: 1100;
-  transition: transform 0.3s ease;
-}
-
-.boton-menu img {
-  height: 24px; /* Ajusta el tamaño del ícono */
-  width: auto;
+  transition: 0.3s;
 }
 
 .boton-menu:hover {
   transform: scale(1.1);
 }
 
-/* SECCIONES */
+.menu {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: var(--color-gray-dark);
+  color: var(--color-surface);
+  transition: left 0.3s ease-in-out;
+  padding-top: 60px;
+  z-index: 1000;
+}
+
+.menu.abierto {
+  left: 0;
+  pointer-events: auto;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu ul li {
+  border-bottom: 1px solid var(--color-gray);
+}
+
+.menu ul li:hover {
+  background-color: var(--color-gray);
+}
+
+.menu ul li a {
+  display: block;
+  padding: 14px;
+  font-weight: 600;
+  color: var(--color-surface);
+  text-decoration: none;
+}
+
+/* ============================================================
+   TOGGLE DE IDIOMA
+   ============================================================ */
+.lang-toggle button {
+  padding: 0.35rem 0.6rem;
+  margin-left: .25rem;
+  border: 1px solid var(--color-gray-light);
+  border-radius: 6px;
+  background: var(--color-surface);
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.lang-toggle button.active {
+  background: var(--color-primary);
+  color: white;
+  border: 2px solid var(--color-gray-dark);
+}
+
+/* ============================================================
+   SECCIONES / VISIBILIDAD
+   ============================================================ */
 .seccion {
   display: none;
 }
+
 .seccion.activa {
   display: block;
 }
 
-/* MENÚ END */
-
-/* ===== COMPONENETES STYLES ===== */
-/* Boton buscar */
-.btn {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  font: 600 14px/1 system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
-  transition: transform 120ms ease, box-shadow 120ms ease, background-color 120ms ease, border-color 120ms ease, color 120ms ease;
-}
-
-/* ===== Tema Rassini para botón de buscar ===== */
-.btn-buscar {
-  background: var(--color-naranja);
-  color: var(--color-blanco);
-  border-color: var(--color-naranja);
-  box-shadow: 0 2px 0 rgba(0,0,0,0.12);
-}
-
-/* Hover: ligeramente más oscuro */
-.btn-buscar:hover {
-  background: var(--color-gris-oscuro);                 /* tono más oscuro del naranja */
-  border-color: var(--color-gris-oscuro);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-}
-
-/* Active: “clic” */
-.btn-buscar:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(0,0,0,0.16) inset;
-}
-
-/* Focus visible: accesible con teclado */
-.btn-buscar:focus-visible {
-  outline: none;
-}
-
-/* Disabled */
-.btn-buscar:disabled,
-.btn-buscar[aria-disabled="true"] {
-  cursor: not-allowed;
-  opacity: 0.55;
-  background: var(--color-gris-oscuro);
-  border-color: var(--color-gris-oscuro);
-  color: var(--color-blanco);
-  box-shadow: none;
-}
-
-/* ===== Botón BUSCAR END ===== */
-
-/* Autocomplete  */
-.autocomplete-items {
+/* ============================================================
+   AUTOCOMPLETE LISTS
+   ============================================================ */
+.field.with-autocomplete {
   position: relative;
-  top: 100%;
-  left: 0; right: 0;
-  background: #fff;
-  z-index: 10;
+}
+
+.autocomplete-items {
+  position: absolute;
+  top: calc(100% + 4px);
+  background: var(--color-surface);
+  border-radius: 6px;
   max-height: 220px;
   overflow-y: auto;
-  border-radius: 6px;
-  padding: 6px 10px;
+  z-index: 15;
+  padding: 5px 0;
+  border: 1px solid var(--color-gray-light);
+}
+
+.autocomplete-item {
+  padding: 8px 12px;
   cursor: pointer;
 }
-/* Autocomplete END */
 
-.comp-header {
-  font-weight: 600;
-  margin-bottom: 6px;
-  display: relative;
+.autocomplete-item:hover {
+  background: var(--color-gray-light);
 }
 
-.cotas-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.cota-item {
-  background: var(--color-gris-claro);
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 8px;
-  font-family: monospace;
-}
-
-.cota-label {
-  color: var(--color-naranja);
-  font-weight: 600;
-  margin-right: 6px;
-}
-
-.cota-value {
-  color: var(--color-gris-oscuro);
-}
-/* ===== COMPONENETES STYLES END===== */
-
-/* ===== EMPAQUE STYLES ===== */
-/* ===== Empaque: tabla de detalles ===== */
+/* ============================================================
+   TABLAS EMPAQUE & TSTS
+   ============================================================ */
 .emp-table-wrap {
   margin-top: 10px;
-  overflow-x: auto; /* seguridad en móviles */
+  overflow-x: auto;
 }
 
 .emp-table {
   width: 100%;
   border-collapse: collapse;
-  background: var(--color-blanco);
-  border-radius: 6px solid var(--color-gris-oscuro);
-}
-
-.emp-table tbody tr:nth-child(even) {
-  background: var(--color-gris-claro);
+  background: var(--color-surface);
 }
 
 .emp-table th,
 .emp-table td {
-  border: 1px solid var(--color-gris-oscuro);
+  border: 1px solid var(--color-gray-light);
   padding: 10px 12px;
-  vertical-align: top;
 }
 
-/* Columna de etiqueta (concepto) */
-.emp-table .label-cell {
+.label-cell {
   font-weight: 600;
-  color: var(--color-gris-oscuro);
+  color: var(--color-text-muted);
 }
 
-/* Columna de valor */
-.emp-table .value-cell {
-  color: var(--color-negro);
-  text-align: center;
+.value-cell {
   font-family: monospace;
-  word-break: break-word;
   font-weight: 700;
-}
-
-/* Encabezado visual */
-.emp-table .table-title {
+  color: var(--color-text);
   text-align: center;
-   font-weight: 800;
-  font-size: 1.1rem;
-  color: var(--color-negro);
-  background: var(--color-naranja);
 }
 
-/* Resalte de  filas */
-.emp-table .is-emphasis {
-  font-weight: 900;
-  color: var(--color-naranja);
+.table-title {
+  background: var(--color-primary);
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-align: center;
 }
 
-.emp-table .is-emphasis {
-  font-weight: 900;
-  color: #275EF5;
+/* ============================================================
+   MENSAJES (warn / empty)
+   ============================================================ */
+.msg-warn {
+  color: var(--color-secondary-dark);
+  font-weight: bold;
 }
 
-/* Autocomplete anclado al input (reutilizado) */
-.field.with-autocomplete { position: relative; }
-
-.field.with-autocomplete .autocomplete-items {
-  position: absolute;
-  top: calc(74%);
-  left: 0; right: 0;
-  z-index: 10;
-  background: var(--color-blanco);
-  border-radius: 6px;
-  max-height: 220px;
-  overflow-y: auto;
+.msg-empty {
+  color: var(--color-gray-dark);
+  font-style: italic;
 }
 
-.autocomplete-item {
-  padding: 8px 10px;
-  cursor: pointer;
-}
-.autocomplete-item:hover {
-  background: var(--color-gris-claro);
-}
-/* ===== EMPAQUE STYLES END===== */
+/* ============================================================
+   ESPECIALES / COMPATIBILIDAD
+   ============================================================ */
