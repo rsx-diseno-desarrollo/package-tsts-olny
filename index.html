@@ -7,7 +7,7 @@ Proyecto: Sitio de Especificaciones Técnicas
 Nota: Este sitio y su UI fueron desarrollados por Héctor Ulises Montes Hernández.
 -->
   <meta charset="UTF-8">
-  <title>SpecFinder BETA</title>
+  <title>SpecFinder BETA 2.0</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="img/favicon.ico">
   <!-- PWA Manifest -->
@@ -19,7 +19,7 @@ Nota: Este sitio y su UI fueron desarrollados por Héctor Ulises Montes Hernánd
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js?v=14')
+      navigator.serviceWorker.register('sw.js?v=3')
         .then(reg => console.log('Service Worker registrado'))
         .catch(err => console.log('Error at register Service Worker:', err));
     });
