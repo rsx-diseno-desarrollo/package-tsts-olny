@@ -14,6 +14,11 @@ botonMenu.addEventListener('click', () => {
 window._empaqueData = [];
 window._empaqueMatch = null;
 
+// ============================
+// ESTADO TSTS (para idioma)
+// ============================
+window._tstsLast = null;
+
 // ----------------------------
 // CARGAR EXCEL Y BUSCADOR
 // ----------------------------
@@ -287,68 +292,77 @@ function initTsts(tstsData) {
   // ------- BOTÓN BUSCAR -------
   btnBuscar.addEventListener("click", buscarTsts);
 
-  function buscarTsts() {
-    const cliente = selCliente.value;
-    const parte    = inputParte.value.trim();
+  
+function buscarTsts() {
+  const cliente = selCliente.value;
+  const parte = inputParte.value.trim();
 
-    // Limpia resultados
-    resultsRoot.innerHTML = "";
+  resultsRoot.innerHTML = "";
 
-    // Validaciones
-    if (!cliente || !parte) {
-      resultsRoot.innerHTML = `<span class="msg-warn">${tDisplay("Seleccione CLIENTE y escriba un Número de pieza.")}</span>`;
-      return;
-    }
-
-    // Filtrado exacto (CLIENTE + NO. DE PARTE)
-    const matchRows = tstsData.filter(row =>
-      String(row["CLIENTE"])      === cliente &&
-      String(row["NO. DE PARTE"]) === parte
-    );
-
-    if (!matchRows.length) {
-      resultsRoot.innerHTML = `<span class="msg-empty">${tDisplay("No se encontraron plantillas para ese cliente y número de parte.")}</span>`;
-      return;
-    }
-
-    // Según tu requerimiento: encabezados arriba
-    const tipoPlantilla = String(matchRows[0]["TIPO DE PLANTILLA"] ?? "--");
-
-    // Encabezado superior (No. de Parte + Tipo de Plantilla)
-    let html = `
-      <h4><strong>${tDisplay("No. de Parte")}:</strong> ${parte}</h4>
-      <h4><strong>${tDisplay("Tipo de Plantilla")}:</strong> ${tipoPlantilla}</h4>
-      <br>
-    `;
-
-    // Tabla (usa los estilos ya definidos en styles.css)
-    html += `
-      <table class="emp-table">
-        <thead>
-          <tr class="table-title">
-            <th>${tDisplay("N° HOJA")}</th>
-            <th>${tDisplay("PLANTILLA")}</th>
-            <th>${tDisplay("MUESTRA")}</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${matchRows.map(row => `
-            <tr>
-              <td class="value-cell">${row["NO. DE HOJA"] ?? "--"}</td>
-              <td class="value-cell">${row["NO. DE PLANTILLA"] ?? "--"}</td>
-              <td class="value-cell">${row["NO. DE MUESTRA"] ?? "--"}</td>
-            </tr>
-          `).join("")}
-        </tbody>
-      </table>
-    `;
-
-    resultsRoot.innerHTML = html;
+  if (!cliente || !parte) {
+    resultsRoot.innerHTML = `<span class="msg-warn">${tDisplay("Seleccione CLIENTE y escriba un Número de pieza.")}</span>`;
+    return;
   }
+
+  const matchRows = tstsData.filter(row =>
+    String(row["CLIENTE"]) === cliente &&
+    String(row["NO. DE PARTE"]) === parte
+  );
+
+  if (!matchRows.length) {
+    resultsRoot.innerHTML = `<span class="msg-empty">${tDisplay("No se encontraron plantillas para ese cliente y número de parte.")}</span>`;
+    return;
+  }
+
+  // GUARDAMOS ÚLTIMO RESULTADO
+  window._tstsLast = { cliente, parte, rows: matchRows };
+
+  // y renderizamos
+  window.renderTstsTable();
+}
 }
 
 // ------- Hooks para idioma, igual que Producto/Empaque -------
 window.renderTstsSelects = function () {
   if (!window._tstsData?.length) return;
   initTsts(window._tstsData);
+};
+
+
+window.renderTstsTable = function () {
+  const resultsRoot = document.getElementById("tsts-results");
+  if (!window._tstsLast || !resultsRoot) return;
+
+  const { cliente, parte, rows } = window._tstsLast;
+
+  const tipoPlantilla = String(rows[0]["TIPO DE PLANTILLA"] ?? "--");
+
+  let html = `
+    <h4><strong>${tDisplay("No. de Parte")}:</strong> ${parte}</h4>
+    <h4><strong>${tDisplay("Tipo de Plantilla")}:</strong> ${tipoPlantilla}</h4>
+    <br>
+  `;
+
+  html += `
+    <table class="emp-table">
+      <thead>
+        <tr class="table-title">
+          <th>${tDisplay("N° HOJA")}</th>
+          <th>${tDisplay("PLANTILLA")}</th>
+          <th>${tDisplay("MUESTRA")}</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map(row => `
+          <tr>
+            <td class="value-cell">${row["NO. DE HOJA"] ?? "--"}</td>
+            <td class="value-cell">${row["NO. DE PLANTILLA"] ?? "--"}</td>
+            <td class="value-cell">${row["NO. DE MUESTRA"] ?? "--"}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+
+  resultsRoot.innerHTML = html;
 };
