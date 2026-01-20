@@ -161,20 +161,31 @@ function initEmpaque(empData) {
 // ======================================================
 //  RENDER EMPAQUE (usado por lang.js)
 // ======================================================
+
 window.renderEmpaqueTable = function () {
   const match = window._empaqueMatch;
-  const tbody = document.querySelector("#emp-table tbody");
+  const table = document.getElementById("emp-table");
+  const tbody = table?.querySelector("tbody");
   const results = document.getElementById("emp-results");
 
+  // Limpieza
   clearEmpaque(tbody, results);
 
-  if (!match) return;
+  if (!match || !table || !tbody) return;
 
-  // Encabezado
-  const headerText =
-    `${match["CLIENTE"] || "--"} / ${match["NO. DE PARTE"] || "--"}`;
-  setEmpHeader(results, headerText);
+  // === Encabezado global de la tabla como <caption> ===
+  const capText = `${match["CLIENTE"] ?? "--"} / ${match["NO. DE PARTE"] ?? "--"}`;
 
+  // Crea o reutiliza el <caption>
+  let cap = table.querySelector("caption#emp-cap");
+  if (!cap) {
+    cap = document.createElement("caption");
+    cap.id = "emp-cap";
+    table.prepend(cap); // lo coloca como primer hijo de la tabla
+  }
+  cap.textContent = capText;
+
+  // === Filas (dos columnas) ===
   const rows = [
     ["TARIMA", match["COD TARIMA"]],
     ["LARGUEROS", match["LARGUEROS"]],
@@ -188,7 +199,6 @@ window.renderEmpaqueTable = function () {
 
   rows.forEach(([label, value]) => {
     const tr = document.createElement("tr");
-
     const th = document.createElement("th");
     th.className = "label-cell";
     th.textContent = tDisplay(label);
