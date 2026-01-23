@@ -201,6 +201,7 @@ window.renderEmpaqueTable = function () {
     ["CAMAS", match["CAMAS"]],
     ["MUELLES x TARIMA", match["MxT"]],
     ["PESO NETO EMPAQUE (Kg)", match["PESO NETO EMPAQUE (Kg)"]],
+    ["PESO BRUTO EMPAQUE (Kg)", match["PESO BRUTO EMPAQUE (Kg)"]],
   ];
 
   rows.forEach(([label, value]) => {
