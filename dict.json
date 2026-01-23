@@ -49,6 +49,7 @@
   "RECICLADA": { "es": "RECICLADA", "en": "RECYCLED"},
   "TELA": { "es": "TELA", "en": "TEXTILE"},
   "METAL": { "es": "METAL", "en": "STEEL"},
+  "EMPLAYE": { "es": "EMPLAYE", "es": "SHRINK WRAPPING"},
   "TACON": {"es": "TACON", "en": "HELPER LEAF"},
 
   "No se encontraron specs de empaque para ese cliente y número de parte.": { "es": "No se encontraron specs de empaque para ese cliente y número de parte.", "en": "No packaging specs found for that client and part number." },
