@@ -131,6 +131,7 @@ function initEmpaque(empData) {
   btnBuscar.addEventListener("click", buscarEmpaque);
 
   function buscarEmpaque() {
+    console.log("Buscar ejecutado");
     const cliente = selCliente.value;
     const parte   = inputParte.value.trim();
 
@@ -144,11 +145,16 @@ function initEmpaque(empData) {
       );
       return;
     }
-
     const match = empData.find(row =>
-      row["CLIENTE"] === cliente &&
-      row["NO. DE PARTE"] === parte
+      String(row["CLIENTE"] ?? "").trim() === String(cliente).trim() &&
+      String(row["NO. DE PARTE"] ?? "").trim() === String(parte).trim()
     );
+
+
+    //const match = empData.find(row =>
+      //row["CLIENTE"] === cliente &&
+      //row["NO. DE PARTE"] === parte
+    //);
 
     if (!match) {
       setEmpHeader(
